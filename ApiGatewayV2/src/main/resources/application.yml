@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: Gateway2
+
+  cloud:
+    consul:
+      host: consul-server
+      discovery:
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}:${random.uuid}
+
+    gateway:
+      routes:
+        - id: to-client
+          uri: lb://client-service
+          predicates:
+            - Path=/client/**
+            - Method=GET,POST
+          filters:
+            - RewritePath=/client/(?<path>.*),/$\{path}
+            - AddRequestParameter=mon-param,sa-valeur
+            - Retry=3
+        - id: to-film
+          uri: lb://film-service
+          predicates:
+            - Path=/film/**
+          filters:
+            - RewritePath=/film/(?<path>.*),/$\{path}
+      discovery:
+        locator:
+          enabled: true

@@ -1,15 +1,13 @@
 spring:
   application:
-    name: film-service
+    name: Gateway1
 
   cloud:
     consul:
-      host: localhost
-      port: 8500
+      host: consul-server
       discovery:
         service-name: ${spring.application.name}
         instance-id: ${spring.application.name}:${random.uuid}
-#        health-check-path: "/actuator/health"
 
 management:
   endpoints:

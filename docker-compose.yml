@@ -11,6 +11,22 @@ services:
       - "8500:8500"
     networks:
       - demo-cloud-net
+  api-gateway:
+    build: ./ApiGatewayV1
+    ports:
+      - "8080:8080"
+    networks:
+      - demo-cloud-net
+    depends_on:
+      - consul-server
+  api-gateway-2:
+    build: ./ApiGatewayV2
+    ports:
+      - "8080:8080"
+    networks:
+      - demo-cloud-net
+    depends_on:
+      - consul-server
   film-service:
 #    container_name: FilmService
     deploy:

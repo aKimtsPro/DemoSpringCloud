@@ -41,7 +41,6 @@ public class CommuController {
 //                .resolve("/commu");
 //
 //        String responseBody = restTemplate.getForObject(uri,String.class);
-//
 //        return "GET to film-service:"+ instance.getInstanceId() + " \nresponse: " + responseBody;
 
     }
