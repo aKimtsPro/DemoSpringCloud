@@ -1,0 +1,33 @@
+version: "3.9"
+
+networks:
+  demo-cloud-net:
+    driver: bridge
+
+services:
+  consul-server:
+    image: consul
+    ports:
+      - "8500:8500"
+    networks:
+      - demo-cloud-net
+  film-service:
+#    container_name: FilmService
+    deploy:
+      replicas: 3
+    build: ./FilmService
+#    ports:
+#      - "8080:8080"
+    networks:
+      - demo-cloud-net
+    depends_on:
+      - consul-server
+  client-service:
+    container_name: ClientService
+    build: ./ClientService
+    ports:
+      - "8181:8181"
+    networks:
+      - demo-cloud-net
+    depends_on:
+      - consul-server
