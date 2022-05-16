@@ -26,6 +26,12 @@ spring:
             - Path=/film/**
           filters:
             - RewritePath=/film/(?<path>.*),/$\{path}
+        - id: mot
+          uri: lb://film-service
+          predicates:
+            - Path=/mot
+          filters:
+            - AddRequestParameter=mot,gateway
       discovery:
         locator:
           enabled: true

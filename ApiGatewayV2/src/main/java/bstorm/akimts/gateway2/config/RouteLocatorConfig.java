@@ -27,6 +27,12 @@ public class RouteLocatorConfig {
                                 .filters(f -> f.rewritePath("/film/(?<path>.*)", "${path}"))
                                 .uri("lb://film-service")
                 )
+                .route("mot",
+                        r -> r.path("/mot")
+                                .and()
+                                .method("GET")
+                                .filters( ( req ) -> req.addRequestParameter("mot", "gateway"))
+                                .uri("lb://film-service"))
                 .build();
     }
 
