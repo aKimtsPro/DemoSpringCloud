@@ -4,12 +4,15 @@ spring:
 
   cloud:
     consul:
-      host: consul-server
+      host: localhost
       discovery:
         service-name: ${spring.application.name}
         instance-id: ${spring.application.name}:${random.uuid}
 
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
         - id: to-client
           uri: lb://client-service
@@ -17,6 +20,7 @@ spring:
             - Path=/client/**
             - Method=GET,POST
           filters:
+            - name: Logger
             - RewritePath=/client/(?<path>.*),/$\{path}
             - AddRequestParameter=mon-param,sa-valeur
             - Retry=3
@@ -30,8 +34,24 @@ spring:
           uri: lb://film-service
           predicates:
             - Path=/mot
+            - name: NumberOfParams
+              args:
+                equals: 0
+#                min: 0
+#                max: 0
           filters:
-            - AddRequestParameter=mot,gateway
-      discovery:
-        locator:
-          enabled: true
+#            - name: Secured
+            - name: AddRequestParameter
+              args:
+                name: mot
+                value: gateway
+            - name: Logger
+        - id: login
+          uri: lb://user-service
+          predicates:
+            - Path=/login
+            - Method=POST
+          filters:
+            - name: Logger
+
+

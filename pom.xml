@@ -6,6 +6,8 @@
         <module>FilmService</module>
         <module>ClientService</module>
         <module>ApiGatewayV1</module>
+        <module>ApiGatewayV2</module>
+        <module>UserService</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -59,12 +61,22 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-loadbalancer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.19.2</version>
         </dependency>
 
     </dependencies>
