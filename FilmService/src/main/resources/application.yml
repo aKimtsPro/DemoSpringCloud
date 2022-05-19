@@ -2,12 +2,10 @@ spring:
   profiles:
     active: dev
   application:
-#    name: film-service
-    name: film_service
+   name: film-service
 
-#  config:
-#    import:
-#      - optional:configserver:http://root:s3cr3t@localhost:8888/${spring.application.name}/${spring.profiles.active}/
+  config:
+    import: configserver:http://root:s3cr3t@localhost:8888/${spring.profiles.active}/
 #      - optional:configserver:http://root:s3cr3t@localhost:8888/shared/actuator/${spring.profiles.active}/
 #      - optional:configserver:http://root:s3cr3t@localhost:8888/shared/consul/${spring.profiles.active}/
 

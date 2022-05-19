@@ -1,10 +1,10 @@
 package bstorm.akimts.film.clients;
 
-import bstorm.akimts.film.config.BeanConfig;
+// import bstorm.akimts.film.config.BeanConfig;
 import bstorm.akimts.film.exceptions.NotFoundException;
-import bstorm.akimts.film.exceptions.ServiceUnreachableException;
-import feign.Retryer;
-import org.springframework.cloud.client.circuitbreaker.NoFallbackAvailableException;
+// import bstorm.akimts.film.exceptions.ServiceUnreachableException;
+// import feign.Retryer;
+// import org.springframework.cloud.client.circuitbreaker.NoFallbackAvailableException;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;

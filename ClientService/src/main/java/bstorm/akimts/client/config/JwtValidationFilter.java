@@ -2,8 +2,8 @@ package bstorm.akimts.client.config;
 
 import bstorm.akimts.client.clients.UserClient;
 import bstorm.akimts.user.dto.UserDTO;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
+// import org.springframework.http.HttpEntity;
+// import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,10 +33,10 @@ public class JwtValidationFilter extends OncePerRequestFilter {
         String token = request.getHeader("Authorization");
 
         if( token != null ) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Authorization", token);
+            // HttpHeaders headers = new HttpHeaders();
+            // headers.add("Authorization", token);
 
-            HttpEntity<Object> httpEntity = new HttpEntity<>(headers);
+            // HttpEntity<Object> httpEntity = new HttpEntity<>(headers);
 
             try {
 

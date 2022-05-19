@@ -2,14 +2,12 @@ package bstorm.akimts.gateway2.config;
 
 import bstorm.akimts.gateway2.predicate.NumberOfParamsRoutePredicateFactory;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.gateway.filter.factory.AddRequestParameterGatewayFilterFactory;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Objects;
 
 @Configuration
 public class RouteLocatorConfig {

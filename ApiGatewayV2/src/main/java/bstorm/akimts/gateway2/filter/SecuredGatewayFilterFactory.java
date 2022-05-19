@@ -1,17 +1,14 @@
 package bstorm.akimts.gateway2.filter;
 
 import bstorm.akimts.gateway2.service.AuthenticationService;
-import bstorm.akimts.user.dto.UserDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
-import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -31,6 +28,7 @@ public class SecuredGatewayFilterFactory extends AbstractGatewayFilterFactory<Se
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange,chain) -> {
+            log.info("through secured filter");
             List<String> authHeader = exchange.getRequest()
                     .getHeaders()
                     .get("Authorization");
