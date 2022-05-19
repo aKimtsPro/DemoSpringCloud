@@ -2,21 +2,57 @@ spring:
   profiles:
     active: dev
   application:
-    name: film-service
+#    name: film-service
+    name: film_service
 
-  cloud:
-    consul:
-      discovery:
-        service-name: ${spring.application.name}
-        instance-id: ${spring.application.name}:${random.uuid}
-#        health-check-path: "/actuator/health"
+#  config:
+#    import:
+#      - optional:configserver:http://root:s3cr3t@localhost:8888/${spring.application.name}/${spring.profiles.active}/
+#      - optional:configserver:http://root:s3cr3t@localhost:8888/shared/actuator/${spring.profiles.active}/
+#      - optional:configserver:http://root:s3cr3t@localhost:8888/shared/consul/${spring.profiles.active}/
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-          - health
-          - beans
-          - mappings
-          - metrics
+#  cloud:
+#    consul:
+#      discovery:
+#        service-name: ${spring.application.name}
+#        instance-id: ${spring.application.name}:${random.uuid}
+##        health-check-path: "/actuator/health"
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include:
+#          - health
+#          - beans
+#          - mappings
+#          - metrics
+
+feign:
+  circuitbreaker:
+    enabled: true
+    alphanumeric-ids:
+      enabled: true
+  client:
+    config:
+      user-service:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: BASIC
+      client-service:
+        error-decoder: bstorm.akimts.film.config.CustomErrorDecoder
+        retryer: bstorm.akimts.film.config.CustomRetryer
+        loggerLevel: FULL
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 60
+
+  retry:
+    configs:
+      default:
+        maxRetryAttempts: 3
+        waitDuration: 100

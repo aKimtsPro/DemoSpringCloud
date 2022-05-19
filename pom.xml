@@ -8,6 +8,7 @@
         <module>ApiGatewayV1</module>
         <module>ApiGatewayV2</module>
         <module>UserService</module>
+<!--        <module>ConfigurationServer</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

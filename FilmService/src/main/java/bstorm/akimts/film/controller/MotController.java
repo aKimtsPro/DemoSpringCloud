@@ -1,5 +1,6 @@
 package bstorm.akimts.film.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,11 @@ public class MotController {
     @GetMapping
     public String getNomUser(Authentication auth){
         return "votre nom est: " + auth.getPrincipal();
+    }
+
+    @GetMapping("/config")
+    public String getUserFromConfig(@Value("spring.security.username")String username){
+        return username;
     }
 
 }
